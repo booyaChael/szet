@@ -1,0 +1,13 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  padding: 5vh;
+  width: 100%;
+}
+
+.cardSet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

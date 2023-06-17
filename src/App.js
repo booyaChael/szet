@@ -1,13 +1,13 @@
-import CardForm from "./components/CardForm/TodoForm/CardForm";
-import Card from "./components/Cards/Cards";
-import classes from "./App.module.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import SzetPage from "./pages/SzetPage";
+
+const router = createBrowserRouter([
+  { path: "/", element: <HomePage /> },
+  { path: "/subject/:subjectId", element: <SzetPage /> },
+]);
 function App() {
-  return (
-    <div className={classes.app}>
-      <CardForm />
-      <Card />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

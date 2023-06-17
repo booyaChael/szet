@@ -3,16 +3,18 @@ import classes from "./CardForm.module.css";
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../Firebase";
-const cardRef = collection(db, "card");
-const createCard = async (inputs) => {
-  try {
-    await addDoc(cardRef, inputs);
-  } catch (error) {
-    return error;
-  }
-};
+import { useParams } from "react-router-dom";
 
 function CardForm() {
+  const { subjectId } = useParams();
+  const cardRef = collection(db, `subject_${subjectId}`);
+  const createCard = async (inputs) => {
+    try {
+      await addDoc(cardRef, inputs);
+    } catch (error) {
+      return error;
+    }
+  };
   const [inputs, setInputs] = useState({
     question: "",
     answer: "",

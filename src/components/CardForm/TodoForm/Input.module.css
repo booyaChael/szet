@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  border: 1px solid black;
+  padding: 2vh;
+}
+.question {
+  width: 20%;
+}
+.answer {
+  width: 60%;
+}

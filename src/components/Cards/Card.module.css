@@ -1,0 +1,16 @@
+.card {
+  border: 1px solid black;
+  padding: 2vh;
+}
+.question {
+  width: 20%;
+}
+.answer {
+  width: 60%;
+}
+.coloredQuestion {
+  background-color: blanchedalmond;
+}
+.coloredAnswer {
+  background-color: black;
+}

@@ -1,17 +1,36 @@
 import Card from "./Card";
+import classes from "./Cards.module.css";
+import { db } from "../../Firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { useState, useEffect } from "react";
 
-const cardLists = [
-  { question: "운영체제의 종류", answer: "안드로이드, ios" },
-  { question: "내 생일", answer: "0225" },
-];
+const cardCollectionRef = collection(db, "card");
 
 function Cards() {
-  const cards = cardLists.map((card) => (
-    <div>
-      <Card content={card.question} />
-      <Card content={card.answer} />
+  const [cardsData, setCardsData] = useState([]);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      const snapshot = await getDocs(cardCollectionRef);
+      const loadedCards = [];
+      snapshot.forEach((doc) => {
+        loadedCards.push(doc.data());
+      });
+      setCardsData(loadedCards);
+    };
+    fetchCards().catch((error) => {
+      console.log(cardsData);
+      console.log(error);
+      return error;
+    });
+  }, []);
+
+  const cards = cardsData.map((card) => (
+    <div className={classes.cardSet}>
+      <Card content={card.question} type="question" />
+      <Card content={card.answer} type="answer" />
     </div>
   ));
-  return <>{cards}</>;
+  return <div className={classes.cards}>{cards}</div>;
 }
 export default Cards;
